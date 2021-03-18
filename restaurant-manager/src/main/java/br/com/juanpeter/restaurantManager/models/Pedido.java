@@ -1,6 +1,8 @@
 package br.com.juanpeter.restaurantManager.models;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,6 +26,7 @@ public class Pedido {
 	private String itemRestaurante;
 	private Double valor;
 	
+	@Enumerated(EnumType.STRING)
 	private TipoSituacaoPedido situacaoPedido;
 	private int mesa;
  
