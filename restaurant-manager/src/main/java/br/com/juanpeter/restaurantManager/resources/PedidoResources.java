@@ -66,20 +66,31 @@ public class PedidoResources {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
-
-    @ApiOperation("Exclui um pedido pelo id.")
-    @DeleteMapping(path = "/{id}")
-    public ResponseEntity<Optional<Pedido>> deleteById(@PathVariable Long id) {
-        try {
-            pedidosRepository.deleteById(id);
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (NoSuchElementException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    
+    @ApiOperation("Altera a situação do pedido de NOVO para CANCELADO")
+    @PutMapping(path = "/pedidos/cancelar/{id}")
+    public ResponseEntity<Pedido> updateSituacaoPedidoToCancelado(@PathVariable Long id) {
+	    return pedidosRepository.findById(id)
+    		.map(pedido -> {
+    	        pedido.setSituacaoPedido(TipoSituacaoPedido.CANCELADO);
+                Pedido pedidoAtual = pedidosRepository.save(pedido);
+                return ResponseEntity.ok().body(pedidoAtual);
+    		}).orElse(ResponseEntity.notFound().build());
     }
 
 
+//    @ApiOperation("Exclui um pedido pelo id.")
+//    @DeleteMapping(path = "/{id}")
+//    public ResponseEntity<Optional<Pedido>> deleteById(@PathVariable Long id) {
+//        try {
+//            pedidosRepository.deleteById(id);
+//            return new ResponseEntity<>(HttpStatus.OK);
+//        } catch (NoSuchElementException e) {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//    }
+//
+//
 //	    @ApiOperation("Atualiza um pedido pelo id.")
 //	    @PutMapping(path = "/{id}")
 //	    public ResponseEntity<Pedido> update(@PathVariable Long id, @RequestBody Pedido pedidoAtualizado) {
@@ -92,19 +103,19 @@ public class PedidoResources {
 //	            return ResponseEntity.ok().body(pedidoAtual);
 //	        }).orElse(ResponseEntity.notFound().build());
 //	    }
-
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public Map<String, String> handleValidationExceptions(
-        MethodArgumentNotValidException ex) {
-        Map<String, String> errors = new HashMap<>();
-        ex.getBindingResult().getAllErrors().forEach((error) -> {
-            String fieldName = ((FieldError) error).getField();
-            String errorMessage = error.getDefaultMessage();
-            errors.put(fieldName, errorMessage);
-        });
-        return errors;
-    }
+//
+//    @ResponseStatus(HttpStatus.BAD_REQUEST)
+//    @ExceptionHandler(MethodArgumentNotValidException.class)
+//    public Map<String, String> handleValidationExceptions(
+//        MethodArgumentNotValidException ex) {
+//        Map<String, String> errors = new HashMap<>();
+//        ex.getBindingResult().getAllErrors().forEach((error) -> {
+//            String fieldName = ((FieldError) error).getField();
+//            String errorMessage = error.getDefaultMessage();
+//            errors.put(fieldName, errorMessage);
+//        });
+//        return errors;
+//    }
 
 }
 
