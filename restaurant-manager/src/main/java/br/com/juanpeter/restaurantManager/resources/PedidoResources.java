@@ -1,31 +1,23 @@
 package br.com.juanpeter.restaurantManager.resources;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Optional;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.juanpeter.restaurantManager.models.Pedido;
 import br.com.juanpeter.restaurantManager.models.TipoSituacaoPedido;
-import br.com.juanpeter.restaurantManager.repository.Pedidos;
+import br.com.juanpeter.restaurantManager.repository.PedidosRepository;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
@@ -35,7 +27,7 @@ import io.swagger.annotations.ApiOperation;
 public class PedidoResources {
 
     @Autowired
-    private Pedidos pedidosRepository;
+    private PedidosRepository pedidosRepository;
 
     @ApiOperation("Cadastra um único pedido")
     @PostMapping
@@ -67,8 +59,9 @@ public class PedidoResources {
         }
     }
     
-    @ApiOperation("Altera a situação do pedido de NOVO para CANCELADO")
-    @PutMapping(path = "/pedidos/cancelar/{id}")
+    // parece redundante, talvez concentrar em um único método?
+    @ApiOperation("Altera a situação do pedido para CANCELADO")
+    @PutMapping(path = "/cancelar/{id}")
     public ResponseEntity<Pedido> updateSituacaoPedidoToCancelado(@PathVariable Long id) {
 	    return pedidosRepository.findById(id)
     		.map(pedido -> {
@@ -78,6 +71,16 @@ public class PedidoResources {
     		}).orElse(ResponseEntity.notFound().build());
     }
 
+    @ApiOperation("Altera a situação do pedido para CONCLUIDO")
+    @PutMapping(path = "/concluir/{id}")
+    public ResponseEntity<Pedido> updateSituacaoPedidoToConcluido(@PathVariable Long id) {
+	    return pedidosRepository.findById(id)
+    		.map(pedido -> {
+    	        pedido.setSituacaoPedido(TipoSituacaoPedido.CONCLUIDO);
+                Pedido pedidoAtual = pedidosRepository.save(pedido);
+                return ResponseEntity.ok().body(pedidoAtual);
+    		}).orElse(ResponseEntity.notFound().build());
+    }
 
 //    @ApiOperation("Exclui um pedido pelo id.")
 //    @DeleteMapping(path = "/{id}")

@@ -1,8 +1,6 @@
 package br.com.juanpeter.restaurantManager.models;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,17 +13,11 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Pedido {
-	
+public class PratoRestaurante {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@GenericGenerator(name ="increment", strategy = "incremet")
-	private Long numeroPedido;
-		
-	private PratoRestaurante pratoRestaurante;
-	
-	@Enumerated(EnumType.STRING)
-	private TipoSituacaoPedido situacaoPedido;
-	private int mesa;
- 
+	private Long idPrato;
+	private String nomePrato;
+	private Double valorPrato;
 }
