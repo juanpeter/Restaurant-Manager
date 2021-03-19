@@ -21,11 +21,13 @@ public class Pedido {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@GenericGenerator(name ="increment", strategy = "incremet")
 	private Long numeroPedido;
-		
-	private PratoRestaurante pratoRestaurante;
+	
+	private String nomePrato;
+	private String valorPrato;
 	
 	@Enumerated(EnumType.STRING)
 	private TipoSituacaoPedido situacaoPedido;
+
 	private int mesa;
  
 }
