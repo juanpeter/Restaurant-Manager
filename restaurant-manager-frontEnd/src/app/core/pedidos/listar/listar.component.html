@@ -1,0 +1,27 @@
+<!-- <p>listar works!</p> -->
+
+<app-card [titulo]="'Listar Pedidos'">
+  <p-table [value]="listaDePedidos" [paginator]="true" [rows]="10">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Nota</th>
+        <th>Ações</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-aluno>
+      <tr>
+        <td>{{ aluno.nome }}</td>
+        <td>{{ aluno.email }}</td>
+        <td>{{ aluno.nota }}</td>
+        <td>
+          <div class="btn-group">
+            <button class="btn btn-primary" (click)="editarAluno(aluno.id)"> Editar</button>
+            <button class="btn btn-primary" (click)="excluirAluno(aluno.id)"> Excluir</button>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</app-card>
