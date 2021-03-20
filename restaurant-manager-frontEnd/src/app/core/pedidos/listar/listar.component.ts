@@ -20,6 +20,7 @@ export class PedidosListarComponent implements OnInit {
   ngOnInit(): void {
     this.pedidosService.buscar().subscribe((pedidos: Array<Pedido>) => {
       this.listaDePedidos = pedidos;
+      console.log(this.listaDePedidos)
     })
   }
 
