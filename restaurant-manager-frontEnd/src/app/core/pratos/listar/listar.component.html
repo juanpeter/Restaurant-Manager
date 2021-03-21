@@ -1,0 +1,25 @@
+<app-card [titulo]="'Lista de Pratos'">
+  <p-table [value]="listaDePratos" [paginator]="true" [rows]="10">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Id do Prato</th>
+        <th>Nome do Prato</th>
+        <th>Valor</th>
+        <th>Ações</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-prato>
+      <tr>
+        <td>{{ prato.idPrato }}</td>
+        <td>{{ prato.nomePrato }}</td>
+        <td>R$ {{ prato.valorPrato }}</td>
+        <td>
+          <div class="btn-group">
+            <app-button [buttonType]="'alter'" (click)="editarPrato(prato.idPrato)">Alterar Prato</app-button>
+            <app-button [buttonType]="'delete'" (click)="deletarPrato(prato.idPrato)">Deletar Prato</app-button>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</app-card>
