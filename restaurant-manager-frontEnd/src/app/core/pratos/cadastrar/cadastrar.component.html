@@ -1,1 +1,15 @@
-<p>cadastrar works!</p>
+<app-card [titulo]="'Cadastrar novo prato'">
+  <form [formGroup]="formulario">
+    <div class="form-group">
+
+      <label>Nome do Prato</label>
+      <input type="text" class="form-control" formControlName="nomePrato">
+
+      <label>Valor do Prato</label>
+      <input type="number" class="form-control" formControlName="valorPrato">
+
+      <app-button [buttonType]="'primary'" (click)="submit()">Enviar</app-button>
+
+    </div>
+  </form>
+</app-card>

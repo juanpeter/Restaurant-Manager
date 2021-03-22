@@ -21,7 +21,7 @@ export class PratosRestauranteService {
   }
 
   incluir(pratoRestaurante: PratoRestaurante) {
-    return this.httpClient.post(`${environment.urlBackEnd}/pratos`, pratoRestaurante);
+    return this.httpClient.post(`${environment.urlBackEnd}/pratos/cadastrar`, pratoRestaurante);
   }
 
   deletar(id: any) {
