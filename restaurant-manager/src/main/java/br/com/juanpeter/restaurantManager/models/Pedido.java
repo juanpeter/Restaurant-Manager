@@ -17,6 +17,8 @@ import lombok.Setter;
 @Entity
 public class Pedido {
 	
+	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@GenericGenerator(name ="increment", strategy = "incremet")

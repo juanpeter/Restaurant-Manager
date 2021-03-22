@@ -2,7 +2,7 @@
 ##Escopo do projeto:
 Desenvolver um sistema de Gestão de Restaurante, onde o usuário poderá realizar as seguintes ações:
 
-**1. Incluir um Pedido;**
+**[X] 1. Incluir um Pedido;**
 -  Um pedido deverá possuir um item de restaurante como por exemplo “Porção de Arroz”, “Filé de Frango”;
 - Um pedido deverá ter um valor;
 - Um pedido deverá possuir uma situação, número do pedido e número da mesa. Por padrão um novo pedido deverá ter a situação “Novo”;
