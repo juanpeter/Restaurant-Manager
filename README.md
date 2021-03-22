@@ -26,7 +26,7 @@ Desenvolver um sistema de Gestão de Restaurante, onde o usuário poderá realiz
 
 **8. O sistema deverá possuir um menu para o usuário incluir um novo pedido, visualizar todos os pedidos pendentes e fechar conta da mesa.**
 
-###Prazo do projeto:
+### Prazo do projeto:
 1 semana, iniciando do dia 17/03/21 até o dia 24/03/21
 
 **Requisitos:**
