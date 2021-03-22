@@ -13,6 +13,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -67,7 +68,7 @@ public class PedidoResources {
     
     // parece redundante, talvez concentrar em um único método?
     @ApiOperation("Altera a situação do pedido para CANCELADO")
-    @PutMapping(path = "/cancelar/{id}")
+    @PatchMapping(path = "/cancelar/{id}")
     public ResponseEntity<Pedido> updateSituacaoPedidoToCancelado(@PathVariable Long id) {
 	    return pedidosRepository.findById(id)
     		.map(pedido -> {
@@ -78,7 +79,7 @@ public class PedidoResources {
     }
 
     @ApiOperation("Altera a situação do pedido para CONCLUIDO")
-    @PutMapping(path = "/concluir/{id}")
+    @PatchMapping(path = "/concluir/{id}")
     public ResponseEntity<Pedido> updateSituacaoPedidoToConcluido(@PathVariable Long id) {
 	    return pedidosRepository.findById(id)
     		.map(pedido -> {
@@ -87,32 +88,7 @@ public class PedidoResources {
                 return ResponseEntity.ok().body(pedidoAtual);
     		}).orElse(ResponseEntity.notFound().build());
     }
-
-//    @ApiOperation("Exclui um pedido pelo id.")
-//    @DeleteMapping(path = "/{id}")
-//    public ResponseEntity<Optional<Pedido>> deleteById(@PathVariable Long id) {
-//        try {
-//            pedidosRepository.deleteById(id);
-//            return new ResponseEntity<>(HttpStatus.OK);
-//        } catch (NoSuchElementException e) {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//    }
-//
-//
-//	    @ApiOperation("Atualiza um pedido pelo id.")
-//	    @PutMapping(path = "/{id}")
-//	    public ResponseEntity<Pedido> update(@PathVariable Long id, @RequestBody Pedido pedidoAtualizado) {
-//	        return pedidosRepository.findById(id)
-//	            .map(pedido -> {
-//	            pedido.setNome(pedidoAtualizado.getNome());
-//	            pedido.setEmail(pedidoAtualizado.getEmail());
-//	            pedido.setNota(pedidoAtualizado.getNota());
-//	            Pedido pedidoAtual = pedidosRepository.save(pedido);
-//	            return ResponseEntity.ok().body(pedidoAtual);
-//	        }).orElse(ResponseEntity.notFound().build());
-//	    }
-//
+    
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Map<String, String> handleValidationExceptions(

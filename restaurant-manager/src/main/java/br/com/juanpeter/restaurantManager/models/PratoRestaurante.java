@@ -18,7 +18,6 @@ public class PratoRestaurante {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@GenericGenerator(name ="increment", strategy = "incremet")
-
 	private Long idPrato;
 	
 	private String nomePrato;

@@ -23,7 +23,7 @@ public class Pedido {
 	private Long numeroPedido;
 	
 	private String nomePrato;
-	private String valorPrato;
+	private Double valorPrato;
 	
 	@Enumerated(EnumType.STRING)
 	private TipoSituacaoPedido situacaoPedido;

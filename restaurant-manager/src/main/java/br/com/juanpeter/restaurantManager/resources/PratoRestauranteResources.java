@@ -51,6 +51,18 @@ public class PratoRestauranteResources {
         return new ResponseEntity<>(pratos, HttpStatus.OK);
     }
     
+    @ApiOperation("Consulta um prato pelo seu id.")
+    @GetMapping(path = "{id}")
+    public ResponseEntity<Optional<PratoRestaurante>> getById(@PathVariable Long id) {
+        Optional<PratoRestaurante> prato;
+        try {
+            prato = pratosRestauranteRepository.findById(id);
+            return new ResponseEntity<>(prato, HttpStatus.OK);
+        } catch (NoSuchElementException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    
     @ApiOperation("Exclui um prato pelo id.")
     @DeleteMapping(path = "excluir/{id}")
     public ResponseEntity<Optional<Pedido>> deleteById(@PathVariable Long id) {
