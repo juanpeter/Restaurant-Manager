@@ -17,7 +17,7 @@ export class PratosRestauranteService {
   }
 
   buscarPorId(id: any) {
-    return this.httpClient.get(`${environment.urlBackEnd}/pratos${id}`)
+    return this.httpClient.get(`${environment.urlBackEnd}/pratos/${id}`)
   }
 
   incluir(pratoRestaurante: PratoRestaurante) {
