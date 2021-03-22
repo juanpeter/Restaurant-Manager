@@ -44,8 +44,6 @@ export class PratosCadastrarComponent implements OnInit {
       prato.nomePrato = this.nomePrato.value;
       prato.valorPrato = this.valorPrato.value;
 
-      console.log(prato)
-
       this.pratosRestauranteService.incluir(prato).subscribe((retorno: PratoRestaurante) => {
         SweetAlert.exibirSucesso('Prato ' + retorno.nomePrato + ' adicionado com sucesso!').then(() => {
           this.router.navigate(['pratos']);

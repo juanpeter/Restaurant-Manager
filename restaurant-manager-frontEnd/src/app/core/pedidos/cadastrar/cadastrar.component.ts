@@ -1,11 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Pedido } from 'src/app/shared/models/pedido';
 import { PratoRestaurante } from 'src/app/shared/models/pratoRestaurante';
+import { PedidosService } from 'src/app/shared/services/pedidos.service';
 import { PratosRestauranteService } from 'src/app/shared/services/pratosRestaurante.service';
-
-// interface City {
-//   name: string,
-//   code: string
-// }
+import { SweetAlert } from 'src/app/shared/sweet-alert';
 
 @Component({
   selector: 'pedidos-cadastrar',
@@ -15,17 +14,20 @@ import { PratosRestauranteService } from 'src/app/shared/services/pratosRestaura
 
 export class PedidosCadastrarComponent implements OnInit {
 
-  // cities: City[];
-
-  // selectedCity: City;
-
-  @Input() pratoSelecionado: PratoRestaurante;
-
+  @Input() prato: PratoRestaurante;
 
   public listaDePratos: Array<PratoRestaurante> = new Array<PratoRestaurante>();
 
+  public formulario: FormGroup = new FormGroup({
+    pratoSelecionado: new FormControl(),
+  });
+
+  get pratoSelecionado(): any { return this.formulario.get('pratoSelecionado') }
+
   constructor(
+    private formBuilder: FormBuilder,
     private pratosRestauranteService: PratosRestauranteService,
+    private pedidosService: PedidosService,
   ) { }
 
   ngOnInit(): void {
@@ -33,13 +35,37 @@ export class PedidosCadastrarComponent implements OnInit {
     this.pratosRestauranteService.buscar().subscribe((pratos: Array<PratoRestaurante>) => {
       this.listaDePratos = pratos;
     })
-    console.log(this.listaDePratos)
+    this.configurarFormulario();
+  }
+
+  configurarFormulario() {
+    this.formulario = this.formBuilder.group({
+      pratoSelecionado: [null, Validators.required],
+    })
+  }
+
+  echoPrato() {
 
   }
 
   submit() {
-    console.log(this.pratoSelecionado.nomePrato)
-    // pedido = new
+    if (this.formulario.valid) {
+      console.log(this.prato)
+      const pedido = new Pedido();
+
+      pedido.nomePrato = this.prato.nomePrato;
+      pedido.valorPrato = this.prato.valorPrato;
+
+      // Mesa deve ser ajustada depois!
+      pedido.mesa = 1;
+
+      this.pedidosService.incluir(pedido).subscribe((retorno: Pedido) => {
+        SweetAlert.exibirSucesso(`Pedido de ${pedido.nomePrato} realizado com sucesso!`)
+      })
+
+    } else {
+      SweetAlert.exibirErro('Formulário Inválido')
+    }
   }
 
 }

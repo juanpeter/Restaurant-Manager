@@ -17,13 +17,13 @@ export class TagComponent implements OnInit {
   obterValorTag(): String {
 
     switch(this.tagValue) {
-      case 'NOVO':
+      case 'NOVO': case 'amarelo':
         return 'warning' //amarelo
-      case 'CONCLUIDO':
+      case 'CONCLUIDO': case 'verde':
         return 'success' //verde
-      case 'CANCELADO':
+      case 'CANCELADO': case 'vermelho':
         return 'danger' //vermelho
-      case 'FECHADO':
+      case 'FECHADO': case 'azul':
         return 'primary' //azul
       default:
         return 'warning'

@@ -1,29 +1,31 @@
-<!-- <app-listbox
-[isMultiple]="false"
-[isCheckbox]="true"
-[optionList]="listaDePratos"
->
-  <ng-template let-prato pTemplate="group">
-    <div class="p-d-flex p-ai-center">
-        <span>{{ prato.nomePrato }}</span>
-        <span>{{ prato.valorPrato }}</span>
+<app-card [titulo]="'Fazer novo pedido'">
+
+
+  <form [formGroup]="formulario">
+    <div class="form-group">
+
+      <p-listbox
+        [options]="listaDePratos"
+        [(ngModel)]="prato"
+        optionLabel="nomePrato"
+        [filter]="true"
+        [checkbox]="true"
+        formControlName="pratoSelecionado"
+      >
+    <ng-template let-prato pTemplate="prato">
+      <div class="p-d-flex p-ai-center">
+          <span>
+            <b>{{ prato.nomePrato }}</b>
+            <app-tag [tagValue]="'verde'">R$ {{ prato.valorPrato }}</app-tag>
+          </span>
+      </div>
+
+    </ng-template>
+    </p-listbox>
+
+      <app-button [buttonType]="'primary'" (click)="submit()">Fazer pedido</app-button>
 
     </div>
-</ng-template>
-</app-listbox> -->
+  </form>
 
-<p-listbox
-  [options]="listaDePratos"
-  [(ngModel)]="pratoSelecionado"
-  optionLabel="nomePrato"
-  (click)="submit()"
-  [filter]="true"
-  [checkbox]="true"
->
-<ng-template let-prato pTemplate="prato">
-  <div class="p-d-flex p-ai-center">
-      <span><b>{{ prato.nomePrato }}</b> R$ {{ prato.valorPrato }}</span>
-
-  </div>
-</ng-template>
-</p-listbox>
+</app-card>
