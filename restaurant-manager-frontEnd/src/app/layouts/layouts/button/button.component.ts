@@ -16,8 +16,6 @@ export class ButtonComponent implements OnInit {
   ngOnInit(): void { }
 
   click() {
-    // Talvez tirar?
-    this.emitirDados.emit('Valor Emitido');
   }
 
   obterClasseBotao(): string {

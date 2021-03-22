@@ -13,7 +13,13 @@
         <td>{{ pedido.numeroPedido }}</td>
         <td>{{ pedido.nomePrato }}</td>
         <td>R$ {{ pedido.valorPrato }}</td>
-        <td>{{ pedido.situacaoPedido }}</td>
+        <td>
+          <app-tag
+          [tagValue] = "pedido.situacaoPedido"
+          >
+          {{ pedido.situacaoPedido }}
+          </app-tag>
+        </td>
         <td>
           <div class="btn-group">
             <!-- <button class="btn btn-primary" (click)="editarAluno(aluno.id)"> Editar</button>

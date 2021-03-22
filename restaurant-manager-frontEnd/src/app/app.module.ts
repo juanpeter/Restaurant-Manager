@@ -12,10 +12,12 @@ import { CardComponent } from './layouts/layouts/card/card.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { TableModule } from 'primeng/table';
+import { TagModule } from 'primeng/tag';
 import { PratosListarComponent } from './core/pratos/listar/listar.component';
 import { HttpErrorInterceptor } from './shared/http-error.interceptor';
 import { PratosAlterarComponent } from './core/pratos/alterar/alterar.component';
 import { PratosCadastrarComponent } from './core/pratos/cadastrar/cadastrar.component';
+import { TagComponent } from './layouts/layouts/tag/tag.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { PratosCadastrarComponent } from './core/pratos/cadastrar/cadastrar.comp
     CardComponent,
     PratosListarComponent,
     PratosAlterarComponent,
-    PratosCadastrarComponent
+    PratosCadastrarComponent,
+    TagComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,8 @@ import { PratosCadastrarComponent } from './core/pratos/cadastrar/cadastrar.comp
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    TableModule
+    TableModule,
+    TagModule
   ],
   providers: [
     {
