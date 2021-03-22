@@ -15,6 +15,7 @@ import { TableModule } from 'primeng/table';
 import { PratosListarComponent } from './core/pratos/listar/listar.component';
 import { HttpErrorInterceptor } from './shared/http-error.interceptor';
 import { PratosAlterarComponent } from './core/pratos/alterar/alterar.component';
+import { PratosCadastrarComponent } from './core/pratos/cadastrar/cadastrar.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { PratosAlterarComponent } from './core/pratos/alterar/alterar.component'
     HeaderComponent,
     CardComponent,
     PratosListarComponent,
-    PratosAlterarComponent
+    PratosAlterarComponent,
+    PratosCadastrarComponent
   ],
   imports: [
     BrowserModule,

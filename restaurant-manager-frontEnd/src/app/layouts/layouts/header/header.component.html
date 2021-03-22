@@ -1,4 +1,3 @@
-Main Sidebar Container
 <aside class="header">
   <span class="nav-link">
     <img src="favicon.ico" data-widget="pushmenu">
@@ -13,9 +12,9 @@ Main Sidebar Container
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
           <li class="nav-item">
-            <a class="nav-link" (click)="mudarRota('/')">
+            <a class="nav-link" (click)="mudarRota('/home')">
               <i class="nav-icon fas fa-home"></i>
-              <p> Início</p>
+              <p>Início</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
@@ -25,13 +24,18 @@ Main Sidebar Container
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a class="nav-link" (click)="mudarRota('alunos/incluir')">
-                  <p>Incluir</p>
+                <a class="nav-link" (click)="mudarRota('pratos/cadastrar')">
+                  <p>Adicionar Prato</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" (click)="mudarRota('alunos/listar')">
-                  <p>Listar</p>
+                <a class="nav-link" (click)="mudarRota('pratos/')">
+                  <p>Lista de Pratos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" (click)="mudarRota('pedidos/')">
+                  <p>Lista de Pedidos</p>
                 </a>
               </li>
             </ul>
