@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './core/login/login.component';
+import { PedidosCadastrarComponent } from './core/pedidos/cadastrar/cadastrar.component';
 import { PedidosListarComponent } from './core/pedidos/listar/listar.component';
 import { PratosAlterarComponent } from './core/pratos/alterar/alterar.component';
 import { PratosCadastrarComponent } from './core/pratos/cadastrar/cadastrar.component';
@@ -18,10 +19,6 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: 'pedidos',
-    component: PedidosListarComponent
-  },
-  {
     path: 'pratos',
     component: PratosListarComponent
   },
@@ -32,6 +29,14 @@ const routes: Routes = [
   {
     path: 'pratos/alterar/:id',
     component: PratosAlterarComponent
+  },
+  {
+    path: 'pedidos',
+    component: PedidosListarComponent
+  },
+  {
+    path: 'pedidos/cadastrar',
+    component: PedidosCadastrarComponent
   },
   {
     path: '**',

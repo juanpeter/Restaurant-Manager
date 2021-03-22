@@ -3,34 +3,39 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { LoginComponent } from './core/login/login.component';
-import { PedidosListarComponent } from './core/pedidos/listar/listar.component';
-import { HeaderComponent } from './layouts/layouts/header/header.component';
-import { ButtonComponent } from './layouts/layouts/button/button.component';
-import { CardComponent } from './layouts/layouts/card/card.component';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpErrorInterceptor } from './shared/http-error.interceptor';
 
 import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
+import { ListboxModule } from 'primeng/listbox';
+
+import { TagComponent } from './layouts/tag/tag.component';
+import { HeaderComponent } from './layouts/header/header.component';
+import { ButtonComponent } from './layouts/button/button.component';
+import { CardComponent } from './layouts/card/card.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+import { AppComponent } from './app.component';
+import { LoginComponent } from './core/login/login.component';
+import { PedidosListarComponent } from './core/pedidos/listar/listar.component';
 import { PratosListarComponent } from './core/pratos/listar/listar.component';
-import { HttpErrorInterceptor } from './shared/http-error.interceptor';
 import { PratosAlterarComponent } from './core/pratos/alterar/alterar.component';
 import { PratosCadastrarComponent } from './core/pratos/cadastrar/cadastrar.component';
-import { TagComponent } from './layouts/layouts/tag/tag.component';
+import { PedidosCadastrarComponent } from './core/pedidos/cadastrar/cadastrar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    PedidosListarComponent,
     ButtonComponent,
     HeaderComponent,
     CardComponent,
+    TagComponent,
+    PedidosListarComponent,
+    PedidosCadastrarComponent,
     PratosListarComponent,
     PratosAlterarComponent,
     PratosCadastrarComponent,
-    TagComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +45,8 @@ import { TagComponent } from './layouts/layouts/tag/tag.component';
     ReactiveFormsModule,
     HttpClientModule,
     TableModule,
-    TagModule
+    TagModule,
+    ListboxModule
   ],
   providers: [
     {

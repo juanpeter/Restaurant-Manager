@@ -1,0 +1,29 @@
+<!-- <app-listbox
+[isMultiple]="false"
+[isCheckbox]="true"
+[optionList]="listaDePratos"
+>
+  <ng-template let-prato pTemplate="group">
+    <div class="p-d-flex p-ai-center">
+        <span>{{ prato.nomePrato }}</span>
+        <span>{{ prato.valorPrato }}</span>
+
+    </div>
+</ng-template>
+</app-listbox> -->
+
+<p-listbox
+  [options]="listaDePratos"
+  [(ngModel)]="pratoSelecionado"
+  optionLabel="nomePrato"
+  (click)="submit()"
+  [filter]="true"
+  [checkbox]="true"
+>
+<ng-template let-prato pTemplate="prato">
+  <div class="p-d-flex p-ai-center">
+      <span><b>{{ prato.nomePrato }}</b> R$ {{ prato.valorPrato }}</span>
+
+  </div>
+</ng-template>
+</p-listbox>
