@@ -14,7 +14,7 @@
         <td>{{ prato.nomePrato }}</td>
         <td>{{ prato.valorPrato | currency: 'BRL' }}</td>
         <td>
-          <div class="btn-group">
+          <div class="btn-group p-d-flex p-flex-column">
             <app-button [buttonType]="'alter'" (click)="editarPrato(prato.idPrato)">Alterar Prato</app-button>
             <app-button [buttonType]="'delete'" (click)="deletarPrato(prato.idPrato)">Deletar Prato</app-button>
           </div>

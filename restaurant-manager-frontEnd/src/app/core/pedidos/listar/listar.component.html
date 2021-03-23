@@ -34,9 +34,12 @@
           </app-tag>
         </td>
         <td>
-          <div class="btn-group p-d-flex p-flex-column" *ngIf="pedido.situacaoPedido == 'NOVO'">
+          <div class="btn-group p-d-flex p-flex-column">
+            <div *ngIf="pedido.situacaoPedido == 'NOVO'">
             <app-button [buttonType]="'verde'" (click)="concluirPedido(pedido.numeroPedido)">Concluir Pedido</app-button>
             <app-button [buttonType]="'vermelho'" (click)="cancelarPedido(pedido.numeroPedido)">Cancelar Pedido</app-button>
+            </div>
+            <app-button [buttonType]="'roxo'" (click)="detalharPedido(pedido.numeroPedido)">Detalhar Pedido</app-button>
           </div>
         </td>
       </tr>
@@ -44,10 +47,10 @@
     <ng-template pTemplate="footer">
     </ng-template>
   </p-table>
-  <div class=" p-d-flex p-ai-center p-jc-between bg-light-yellow">
+  <div class="p-d-flex p-ai-center p-jc-between bg-light-yellow pt-4">
     <h2>Total: {{ valorTotalPedidos | currency: 'BRL'}}</h2>
     <div class="btn-group">
-      <app-button [buttonType]="'verde'">Fechar conta</app-button>
+      <app-button [buttonType]="'azul'" (click)="fecharConta()">Fechar conta</app-button>
     </div>
   </div>
 </app-card>

@@ -1,4 +1,3 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Pedido } from 'src/app/shared/models/pedido';
@@ -19,6 +18,7 @@ export class PedidosListarComponent implements OnInit {
 
   constructor(
     private pedidosService: PedidosService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -35,7 +35,6 @@ export class PedidosListarComponent implements OnInit {
     :
     this.pedidosService.buscar().subscribe((pedidos: Array<Pedido>) => {
       this.listaDePedidos = pedidos;
-
     })
 
     this.atualizarValorTotal()
@@ -52,21 +51,35 @@ export class PedidosListarComponent implements OnInit {
     })
   }
 
-  // Lista não está atualizando automaticamente, investigar
   concluirPedido(id: String) {
     this.pedidosService.concluir(id).subscribe((retorno: Pedido) => {
       SweetAlert.exibirSucesso(`Pedido de ${retorno.nomePrato} alterado para Concluído`)
+      .then(() => {
+        this.pedidosService.buscar().subscribe((pedidos: Array<Pedido>) => {
+          this.listaDePedidos = pedidos;
+        })
+      })
     })
-    //Não atualiza automaticamente
-    this.atualizarLista();
   }
 
   cancelarPedido(id: String) {
-    this.pedidosService.cancelar(id).subscribe((retorno: Pedido) => {
-      SweetAlert.exibirSucesso(`Pedido de ${retorno.nomePrato} Cancelado com sucesso`)
+    this.pedidosService.cancelar(id).subscribe(() => {
+      SweetAlert.exibirSucesso(`Pedido cancelado com sucesso`)
+      .then(() => {
+        this.pedidosService.buscar().subscribe((pedidos: Array<Pedido>) => {
+          this.listaDePedidos = pedidos;
+        })
+      })
     })
-    //Não atualiza automaticamente
-    this.atualizarLista();
   }
 
+  detalharPedido(id: String) {
+    this.router.navigate([`pedidos/detalhar/${id}`])
+  }
+
+  // fecharConta() {
+  //   this.pedidosService.buscar().subscribe((pedidos: Array<Pedido>) => {
+  //     const pedidosFiltrados = pedidos.filter(pedido => pedido.situacaoPedido !== 'CANCELADO')
+  //   })
+  // }
 }

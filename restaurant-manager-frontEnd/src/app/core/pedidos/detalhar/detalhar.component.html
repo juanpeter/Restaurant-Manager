@@ -1,0 +1,33 @@
+<app-card [titulo]="'Detalhes do Pedido'">
+  <p-table [value]="[{}]">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Numero do pedido</th>
+        <th>Mesa</th>
+        <th>Nome do Prato</th>
+        <th>Valor</th>
+        <th>Situação</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body">
+      <tr>
+        <td>{{ pedido.numeroPedido }}</td>
+        <td>{{ pedido.mesa }}</td>
+        <td>{{ pedido.nomePrato }}</td>
+        <td>{{ pedido.valorPrato | currency: 'BRL' }}</td>
+        <td>
+          <app-tag
+          [tagValue] = "pedido.situacaoPedido"
+          >
+          {{ pedido.situacaoPedido }}
+          </app-tag>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="footer">
+    </ng-template>
+  </p-table>
+</app-card>
+<div class="p-d-flex p-jc-end">
+  <app-button [buttonType]="'cinza'" (click)="voltarRota()">Voltar</app-button>
+</div>

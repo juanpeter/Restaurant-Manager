@@ -30,6 +30,8 @@ export class ButtonComponent implements OnInit {
         return 'btn btn-danger m-2';
       case 'success': case 'verde':
         return 'btn btn-success m-2';
+      case 'explore': case 'roxo':
+        return 'btn btn-purple m-2';
       default:
         return 'btn btn-primary m-2';
     }
@@ -45,6 +47,8 @@ export class ButtonComponent implements OnInit {
         return 'fa fa-cog';
       case 'delete': case 'vermelho':
         return 'fa fa-times';
+      case 'explore': case 'roxo':
+        return 'fa fa-search';
       default:
         return 'fa fa-check';
     }

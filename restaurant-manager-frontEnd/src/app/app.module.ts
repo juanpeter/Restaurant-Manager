@@ -23,6 +23,7 @@ import { PratosListarComponent } from './core/pratos/listar/listar.component';
 import { PratosAlterarComponent } from './core/pratos/alterar/alterar.component';
 import { PratosCadastrarComponent } from './core/pratos/cadastrar/cadastrar.component';
 import { PedidosCadastrarComponent } from './core/pedidos/cadastrar/cadastrar.component';
+import { PedidosDetalharComponent } from './core/pedidos/detalhar/detalhar.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { PedidosCadastrarComponent } from './core/pedidos/cadastrar/cadastrar.co
     PratosListarComponent,
     PratosAlterarComponent,
     PratosCadastrarComponent,
+    PedidosDetalharComponent,
   ],
   imports: [
     BrowserModule,

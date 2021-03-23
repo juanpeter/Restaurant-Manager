@@ -66,7 +66,6 @@ public class PedidoResources {
         }
     }
     
-    // parece redundante, talvez concentrar em um único método?
     @ApiOperation("Altera a situação do pedido para CANCELADO")
     @PatchMapping(path = "/cancelar/{id}")
     public ResponseEntity<Pedido> updateSituacaoPedidoToCancelado(@PathVariable Long id) {
@@ -88,6 +87,23 @@ public class PedidoResources {
                 return ResponseEntity.ok().body(pedidoAtual);
     		}).orElse(ResponseEntity.notFound().build());
     }
+    
+//    @ApiOperation("Altera todos os pedidos NOVO e CONCLUIDO para FECHADO")
+//    @PatchMapping(path = "/fechar")
+//    public ResponseEntity<List<Pedido>> updateAllSituacaoPedidoToFechado() {
+//        List<Pedido> pedidos = pedidosRepository.findAll();
+//        pedidos.stream()
+//			.filter(
+//				pedido -> pedido.getSituacaoPedido()
+//				.equals(TipoSituacaoPedido.CANCELADO)
+//			)
+//			.map(
+//				pedido -> {
+//					pedido.setSituacaoPedido(TipoSituacaoPedido.FECHADO);
+//					return pedidos.add(pedido);
+//			});
+//        	return new ResponseEntity<>(pedidos, HttpStatus.OK); 
+//    }
     
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)

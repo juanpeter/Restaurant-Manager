@@ -6,3 +6,9 @@ button {
 span {
   margin-right: 5px;
 }
+
+.btn-purple {
+  color: #fff;
+  background: #9C27B0;
+  border: #9C27B0;
+}

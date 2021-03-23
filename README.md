@@ -10,7 +10,7 @@ Desenvolver um sistema de Gestão de Restaurante, onde o usuário poderá realiz
 **[X] 2. Alterar um Pedido;**
 - A situação não poderá ser alterada, apenas pelas funcionalidades abaixo;
 
-**3. Detalhar um pedido;**
+**[X] 3. Detalhar um pedido;**
 
 **[X] 4. Cancelar um pedido;**
 - Altera a situação do pedido para “Cancelado”;
