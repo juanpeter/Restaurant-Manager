@@ -15,10 +15,10 @@ export class PedidosListarComponent implements OnInit {
   @Input() listarApenasPendentes: boolean;
 
   public listaDePedidos: Array<Pedido> =  new Array<Pedido>();
+  public valorTotalPedidos: number;
 
   constructor(
     private pedidosService: PedidosService,
-    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -31,16 +31,25 @@ export class PedidosListarComponent implements OnInit {
     this.pedidosService.buscar().subscribe((pedidos: Array<Pedido>) => {
       const pedidosFiltrados = pedidos.filter(pedido => pedido.situacaoPedido !== 'CANCELADO')
       this.listaDePedidos = pedidosFiltrados;
-      console.log(this.listaDePedidos)
     })
     :
     this.pedidosService.buscar().subscribe((pedidos: Array<Pedido>) => {
       this.listaDePedidos = pedidos;
-      console.log(this.listaDePedidos)
 
     })
 
+    this.atualizarValorTotal()
     return this.listaDePedidos;
+  }
+
+  atualizarValorTotal() {
+    this.pedidosService.buscar().subscribe((pedidos: Array<Pedido>) => {
+      const valorTotalPedidos = pedidos
+      .filter(pedido => pedido.situacaoPedido !== 'CANCELADO')
+      .map(pedido => pedido.valorPrato)
+      .reduce((valorTotal, valorPedido) => valorTotal + valorPedido)
+      this.valorTotalPedidos = valorTotalPedidos
+    })
   }
 
   // Lista não está atualizando automaticamente, investigar
@@ -60,6 +69,4 @@ export class PedidosListarComponent implements OnInit {
     this.atualizarLista();
   }
 
-  detalharPedido() {
-  }
 }

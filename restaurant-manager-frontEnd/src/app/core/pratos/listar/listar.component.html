@@ -12,7 +12,7 @@
       <tr>
         <td>{{ prato.idPrato }}</td>
         <td>{{ prato.nomePrato }}</td>
-        <td>R$ {{ prato.valorPrato }}</td>
+        <td>{{ prato.valorPrato | currency: 'BRL' }}</td>
         <td>
           <div class="btn-group">
             <app-button [buttonType]="'alter'" (click)="editarPrato(prato.idPrato)">Alterar Prato</app-button>

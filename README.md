@@ -1,5 +1,5 @@
-#Desafio Treinamento Java/Angular 2021
-##Escopo do projeto:
+# Desafio Treinamento Java/Angular 2021
+## Escopo do projeto:
 Desenvolver um sistema de Gestão de Restaurante, onde o usuário poderá realizar as seguintes ações:
 
 **[X] 1. Incluir um Pedido;**
