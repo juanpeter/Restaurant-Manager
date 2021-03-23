@@ -12,8 +12,8 @@
       >
         <ng-template let-prato pTemplate="prato">
           <div class="p-d-flex p-ai-center p-jc-between w-100">
-            <b>{{ prato.nomePrato }}</b>
-            <app-tag [tagValue]="'verde'">R$ {{ prato.valorPrato }}</app-tag>
+            <h5>{{ prato.nomePrato }}</h5>
+            <app-tag [tagValue]="'verde'"><h6>{{ prato.valorPrato | currency: 'BRL' }}</h6></app-tag>
           </div>
 
         </ng-template>

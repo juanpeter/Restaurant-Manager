@@ -1,11 +1,15 @@
 /* Header */
 aside.header {
-  background-color: #1976d2;
-  color: #fff;
+  background-color: #ffd592;
+  color: #99522E;
+}
+
+aside.header > .nav-link > .p-d-inline-flex.p-ai-center {
+  cursor: pointer;
 }
 
 aside.main-sidebar {
-  background: linear-gradient(145deg,#0d47a1,#42a5f5);
+  background: #ffd592;
   color: #fff;
 }
 
@@ -19,7 +23,7 @@ aside.main-sidebar {
 
 [class*=sidebar-light] .sidebar a:hover {
   background-color: rgba(0,0,0,.1) !important;
-  color: #42a5f5 !important;
+  color: #fff !important;
 }
 
 aside::after {
@@ -30,7 +34,7 @@ aside::after {
   bottom: 0;
   left: -3em;
   right: 0;
-  background-color: #1976d2;
+  background-color: #ffd592;
   /* background: url('../../../assets/images/angular-background.png') top 0 left 0 repeat,
               url('../../../assets/images/angular-background.png') top 80px left 160px repeat; */
   opacity: .05;
