@@ -19,11 +19,11 @@ export class PedidosService {
   }
 
   concluir(id: any) {
-    return this.httpClient.patch(`${environment.urlBackEnd}/concluir/${id}`, false)
+    return this.httpClient.patch(`${environment.urlBackEnd}/pedidos/concluir/${id}`, false)
   }
 
   cancelar(id: any) {
-    return this.httpClient.patch(`${environment.urlBackEnd}/cancelar/${id}`, false)
+    return this.httpClient.patch(`${environment.urlBackEnd}/pedidos/cancelar/${id}`, false)
   }
 
   buscarPorId(id: any) {

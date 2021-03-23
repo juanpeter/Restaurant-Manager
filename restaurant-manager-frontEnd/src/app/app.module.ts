@@ -8,6 +8,7 @@ import { HttpErrorInterceptor } from './shared/http-error.interceptor';
 import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { ListboxModule } from 'primeng/listbox';
+import { InputSwitchModule } from 'primeng/inputswitch';
 
 import { TagComponent } from './layouts/tag/tag.component';
 import { HeaderComponent } from './layouts/header/header.component';
@@ -46,7 +47,8 @@ import { PedidosCadastrarComponent } from './core/pedidos/cadastrar/cadastrar.co
     HttpClientModule,
     TableModule,
     TagModule,
-    ListboxModule
+    ListboxModule,
+    InputSwitchModule
   ],
   providers: [
     {

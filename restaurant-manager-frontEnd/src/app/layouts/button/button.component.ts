@@ -20,14 +20,16 @@ export class ButtonComponent implements OnInit {
 
   obterClasseBotao(): string {
     switch(this.buttonType) {
-      case 'primary':
+      case 'primary': case 'azul':
         return 'btn btn-primary m-2';
-      case 'secondary':
+      case 'secondary': case 'cinza':
         return 'btn btn-secondary m-2';
-      case 'alter':
+      case 'alter': case 'amarelo':
         return 'btn btn-warning m-2';
-      case 'delete':
+      case 'delete': case 'vermelho':
         return 'btn btn-danger m-2';
+      case 'success': case 'verde':
+        return 'btn btn-success m-2';
       default:
         return 'btn btn-primary m-2';
     }
@@ -35,13 +37,13 @@ export class ButtonComponent implements OnInit {
 
   obterIconeBotao(): string {
     switch(this.buttonType) {
-      case 'primary':
+      case 'primary': case 'azul': case 'success': case 'verde':
         return 'fa fa-check';
-      case 'secondary':
+      case 'secondary': case 'cinza':
         return 'fa fa-angle-left';
-      case 'alter':
+      case 'alter': case 'amarelo':
         return 'fa fa-cog';
-      case 'delete':
+      case 'delete': case 'vermelho':
         return 'fa fa-times';
       default:
         return 'fa fa-check';

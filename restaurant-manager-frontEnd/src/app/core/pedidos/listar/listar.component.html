@@ -1,11 +1,24 @@
-<app-card [titulo]="'Lista de pedidos'">
-  <p-table [value]="listaDePedidos" [paginator]="true" [rows]="10">
+<app-card [titulo]="'Lista de Pedidos'">
+  <div class="p-d-flex p-jc-between p-ai-center">
+    <p>Listar apenas pedidos pendentes?</p>
+    <p-inputSwitch
+      [(ngModel)]="listarApenasPendentes"
+      (onChange)="atualizarLista(listarApenasPendentes)"
+     >
+    </p-inputSwitch>
+  </div>
+  <p-table
+    [value]="listaDePedidos"
+    [paginator]="true"
+    [rows]="5"
+  >
     <ng-template pTemplate="header">
       <tr>
         <th>Numero do pedido</th>
         <th>Nome do Prato</th>
         <th>Valor</th>
         <th>Situação</th>
+        <th>Ações</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-pedido>
@@ -20,10 +33,10 @@
           {{ pedido.situacaoPedido }}
           </app-tag>
         </td>
-        <td>
+        <td *ngIf="pedido.situacaoPedido == 'NOVO'">
           <div class="btn-group">
-            <!-- <button class="btn btn-primary" (click)="editarAluno(aluno.id)"> Editar</button>
-            <button class="btn btn-primary" (click)="excluirAluno(aluno.id)"> Excluir</button> -->
+            <app-button [buttonType]="'verde'" (click)="concluirPedido(pedido.numeroPedido)">Concluir Pedido</app-button>
+            <app-button [buttonType]="'vermelho'" (click)="cancelarPedido(pedido.numeroPedido)">Cancelar Pedido</app-button>
           </div>
         </td>
       </tr>

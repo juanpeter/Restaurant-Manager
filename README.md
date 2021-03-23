@@ -7,21 +7,21 @@ Desenvolver um sistema de Gestão de Restaurante, onde o usuário poderá realiz
 - Um pedido deverá ter um valor;
 - Um pedido deverá possuir uma situação, número do pedido e número da mesa. Por padrão um novo pedido deverá ter a situação “Novo”;
 
-**2. Alterar um Pedido;**
+**[X] 2. Alterar um Pedido;**
 - A situação não poderá ser alterada, apenas pelas funcionalidades abaixo;
 
 **3. Detalhar um pedido;**
 
-**4. Cancelar um pedido;**
+**[X] 4. Cancelar um pedido;**
 - Altera a situação do pedido para “Cancelado”;
 
-**5. Concluir um pedido;**
+**[X] 5. Concluir um pedido;**
 - Altera a situação do pedido para “Concluído”;
 
 **6. Fechar Conta da Mesa;**
 - Soma todos os pedidos Concluídos da Mesa e retorna o valor total, além disso, altera a situação de todos os pedidos somados para “Fechado”;
 
-**7. Visualizar todos os pedidos pendentes;**
+**[X] 7. Visualizar todos os pedidos pendentes;**
 - Lista todos os pedidos com as seguintes situações: “Novo” e “Concluído”, e a partir dessa lista, o usuário pode detalhar, cancelar, alterar ou finalizar um pedido;
 
 **8. O sistema deverá possuir um menu para o usuário incluir um novo pedido, visualizar todos os pedidos pendentes e fechar conta da mesa.**

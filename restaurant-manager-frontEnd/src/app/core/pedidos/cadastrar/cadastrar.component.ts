@@ -44,10 +44,6 @@ export class PedidosCadastrarComponent implements OnInit {
     })
   }
 
-  echoPrato() {
-
-  }
-
   submit() {
     if (this.formulario.valid) {
       console.log(this.prato)

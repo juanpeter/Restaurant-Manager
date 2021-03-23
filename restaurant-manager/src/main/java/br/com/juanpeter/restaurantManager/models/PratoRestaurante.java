@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.PositiveOrZero;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -20,6 +22,9 @@ public class PratoRestaurante {
 	@GenericGenerator(name ="increment", strategy = "incremet")
 	private Long idPrato;
 	
+	@NotBlank(message = "Nome do prato é obrigatório!")
 	private String nomePrato;
+	
+	@PositiveOrZero(message = "Valor é obrigatório!")
 	private Double valorPrato;
 }
