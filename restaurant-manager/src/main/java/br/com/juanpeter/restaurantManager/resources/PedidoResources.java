@@ -88,22 +88,30 @@ public class PedidoResources {
     		}).orElse(ResponseEntity.notFound().build());
     }
     
-//    @ApiOperation("Altera todos os pedidos NOVO e CONCLUIDO para FECHADO")
-//    @PatchMapping(path = "/fechar")
-//    public ResponseEntity<List<Pedido>> updateAllSituacaoPedidoToFechado() {
-//        List<Pedido> pedidos = pedidosRepository.findAll();
-//        pedidos.stream()
-//			.filter(
-//				pedido -> pedido.getSituacaoPedido()
-//				.equals(TipoSituacaoPedido.CANCELADO)
-//			)
-//			.map(
-//				pedido -> {
-//					pedido.setSituacaoPedido(TipoSituacaoPedido.FECHADO);
-//					return pedidos.add(pedido);
-//			});
-//        	return new ResponseEntity<>(pedidos, HttpStatus.OK); 
-//    }
+    @ApiOperation("Altera todos os pedidos NOVO e CONCLUIDO para FECHADO")
+    @PatchMapping(path = "/fechar")
+    public ResponseEntity<List<Pedido>> updateAllSituacaoPedidoToFechado() {
+    	
+    	//Acessar a lista de pedidos
+    	pedidosRepository.findAll()
+		   .stream()
+		   .forEach(pedido -> {
+			   //Se o pedido não for do tipo CANCELADO
+    			if (pedido.getSituacaoPedido() != TipoSituacaoPedido.CANCELADO
+    					&& pedido.getSituacaoPedido() != TipoSituacaoPedido.FECHADO) {
+				   //Fazer o pedido ser FECHADO
+    				pedido.setSituacaoPedido(TipoSituacaoPedido.FECHADO);
+    				//Salvar esse pedido
+    				pedidosRepository.save(pedido);
+    			}
+     		});
+    	
+    	//Consultar a lista modificada e retornar resposta
+    	List<Pedido> listaDePedidos = pedidosRepository.findAll();
+    	
+        return new ResponseEntity<>(listaDePedidos, HttpStatus.OK);
+
+    }
     
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
