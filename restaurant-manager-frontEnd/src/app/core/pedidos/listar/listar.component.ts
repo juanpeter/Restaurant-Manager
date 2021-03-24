@@ -29,7 +29,8 @@ export class PedidosListarComponent implements OnInit {
 
     listarApenasPendentes ?
     this.pedidosService.buscar().subscribe((pedidos: Array<Pedido>) => {
-      const pedidosFiltrados = pedidos.filter(pedido => pedido.situacaoPedido !== 'CANCELADO')
+      const pedidosFiltrados = pedidos.filter(
+        pedido => pedido.situacaoPedido !== 'CANCELADO' && pedido.situacaoPedido !== 'FECHADO')
       this.listaDePedidos = pedidosFiltrados;
     })
     :
@@ -43,11 +44,16 @@ export class PedidosListarComponent implements OnInit {
 
   atualizarValorTotal() {
     this.pedidosService.buscar().subscribe((pedidos: Array<Pedido>) => {
-      const valorTotalPedidos = pedidos
-      .filter(pedido => pedido.situacaoPedido !== 'CANCELADO')
-      .map(pedido => pedido.valorPrato)
-      .reduce((valorTotal, valorPedido) => valorTotal + valorPedido)
-      this.valorTotalPedidos = valorTotalPedidos
+      try {
+        const valorTotalPedidos = pedidos
+        .filter(pedido => pedido.situacaoPedido !== 'CANCELADO' && pedido.situacaoPedido !== 'FECHADO')
+        .map(pedido => pedido.valorPrato)
+        .reduce((valorTotal, valorPedido) => valorTotal + valorPedido)
+        this.valorTotalPedidos = valorTotalPedidos
+      } catch (error) {
+        const valorTotalPedidos = 0
+        this.valorTotalPedidos = valorTotalPedidos
+      }
     })
   }
 
@@ -77,9 +83,15 @@ export class PedidosListarComponent implements OnInit {
     this.router.navigate([`pedidos/detalhar/${id}`])
   }
 
-  // fecharConta() {
-  //   this.pedidosService.buscar().subscribe((pedidos: Array<Pedido>) => {
-  //     const pedidosFiltrados = pedidos.filter(pedido => pedido.situacaoPedido !== 'CANCELADO')
-  //   })
-  // }
+  fecharConta() {
+    this.pedidosService.fecharPendentes().subscribe(() => {
+      SweetAlert.exibirSucesso(`Conta paga com sucesso!`)
+      .then(() => {
+        this.pedidosService.buscar().subscribe((pedidos: Array<Pedido>) => {
+          this.listaDePedidos = pedidos;
+        })
+      })
+    })
+    this.atualizarValorTotal()
+  }
 }

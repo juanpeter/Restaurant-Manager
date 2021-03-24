@@ -30,4 +30,8 @@ export class PedidosService {
     return this.httpClient.get(`${environment.urlBackEnd}/pedidos/${id}`)
   }
 
+  fecharPendentes() {
+    return this.httpClient.patch(`${environment.urlBackEnd}/pedidos/fechar`, false)
+  }
+
 }
