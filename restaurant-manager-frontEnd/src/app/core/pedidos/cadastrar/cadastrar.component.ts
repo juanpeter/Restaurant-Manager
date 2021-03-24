@@ -15,13 +15,16 @@ import { SweetAlert } from 'src/app/shared/sweet-alert';
 export class PedidosCadastrarComponent implements OnInit {
 
   @Input() prato: PratoRestaurante;
+  @Input() mesa: number;
 
   public listaDePratos: Array<PratoRestaurante> = new Array<PratoRestaurante>();
 
   public formulario: FormGroup = new FormGroup({
+    mesaSelecionada: new FormControl(),
     pratoSelecionado: new FormControl(),
   });
 
+  get mesaSelecionada(): any { return this.formulario.get('mesaSelecionada') }
   get pratoSelecionado(): any { return this.formulario.get('pratoSelecionado') }
 
   constructor(
@@ -40,23 +43,21 @@ export class PedidosCadastrarComponent implements OnInit {
 
   configurarFormulario() {
     this.formulario = this.formBuilder.group({
+      mesaSelecionada: [null, Validators.required],
       pratoSelecionado: [null, Validators.required],
     })
   }
 
   submit() {
     if (this.formulario.valid) {
-      console.log(this.prato)
-      const pedido = new Pedido();
+      const pedido: Pedido = new Pedido();
 
       pedido.nomePrato = this.prato.nomePrato;
       pedido.valorPrato = this.prato.valorPrato;
-
-      // Mesa deve ser ajustada depois!
-      pedido.mesa = 1;
+      pedido.mesa = this.mesa;
 
       this.pedidosService.incluir(pedido).subscribe((retorno: Pedido) => {
-        SweetAlert.exibirSucesso(`Pedido de ${pedido.nomePrato} realizado com sucesso!`)
+        SweetAlert.exibirSucesso(`Pedido de ${retorno.nomePrato} para a mesa ${retorno.mesa} realizado com sucesso!`)
       })
 
     } else {

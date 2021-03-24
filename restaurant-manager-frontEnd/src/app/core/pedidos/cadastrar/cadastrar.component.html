@@ -2,6 +2,10 @@
   <form [formGroup]="formulario">
     <div class="form-group">
 
+      <label>Mesa</label>
+      <input type="number" class="form-control mb-4" formControlName="mesaSelecionada" [(ngModel)]="mesa">
+
+      <label>Prato</label>
       <p-listbox
         [options]="listaDePratos"
         [(ngModel)]="prato"

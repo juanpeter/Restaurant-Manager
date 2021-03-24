@@ -9,6 +9,7 @@ import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { ListboxModule } from 'primeng/listbox';
 import { InputSwitchModule } from 'primeng/inputswitch';
+import { DropdownModule } from 'primeng/dropdown';
 
 import { TagComponent } from './layouts/tag/tag.component';
 import { HeaderComponent } from './layouts/header/header.component';
@@ -52,9 +53,9 @@ import { PedidosDetalharComponent } from './core/pedidos/detalhar/detalhar.compo
     TagModule,
     ListboxModule,
     InputSwitchModule,
+    DropdownModule
   ],
   providers: [
-
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpErrorInterceptor,
