@@ -24,7 +24,7 @@ export class TagComponent implements OnInit {
       case 'CANCELADO': case 'vermelho':
         return 'danger' //vermelho
       case 'FECHADO': case 'azul':
-        return 'primary' //azul
+        return 'info' //azul
       default:
         return 'warning'
     }

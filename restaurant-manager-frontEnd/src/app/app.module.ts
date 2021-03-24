@@ -39,6 +39,7 @@ import { PedidosDetalharComponent } from './core/pedidos/detalhar/detalhar.compo
     PratosAlterarComponent,
     PratosCadastrarComponent,
     PedidosDetalharComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -50,9 +51,10 @@ import { PedidosDetalharComponent } from './core/pedidos/detalhar/detalhar.compo
     TableModule,
     TagModule,
     ListboxModule,
-    InputSwitchModule
+    InputSwitchModule,
   ],
   providers: [
+
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpErrorInterceptor,

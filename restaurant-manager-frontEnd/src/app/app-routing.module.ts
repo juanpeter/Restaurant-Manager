@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
 import { LoginComponent } from './core/login/login.component';
 import { PedidosCadastrarComponent } from './core/pedidos/cadastrar/cadastrar.component';
 import { PedidosDetalharComponent } from './core/pedidos/detalhar/detalhar.component';
@@ -12,6 +13,11 @@ import { PaginalInicialComponent } from './shared/pages/paginal-inicial/paginal-
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
+  {
     path: 'home',
     component: PaginalInicialComponent
   },
@@ -21,15 +27,15 @@ const routes: Routes = [
   },
   {
     path: 'pratos',
-    component: PratosListarComponent
+    component: PratosListarComponent,
   },
   {
     path: 'pratos/cadastrar',
-    component: PratosCadastrarComponent
+    component: PratosCadastrarComponent,
   },
   {
     path: 'pratos/alterar/:id',
-    component: PratosAlterarComponent
+    component: PratosAlterarComponent,
   },
   {
     path: 'pedidos',

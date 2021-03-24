@@ -22,6 +22,7 @@ export class PedidosListarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.listarApenasPendentes = true;
     this.atualizarLista(this.listarApenasPendentes);
   }
 
@@ -84,14 +85,18 @@ export class PedidosListarComponent implements OnInit {
   }
 
   fecharConta() {
-    this.pedidosService.fecharPendentes().subscribe(() => {
-      SweetAlert.exibirSucesso(`Conta paga com sucesso!`)
-      .then(() => {
-        this.pedidosService.buscar().subscribe((pedidos: Array<Pedido>) => {
-          this.listaDePedidos = pedidos;
+    if (this.valorTotalPedidos > 0) {
+      this.pedidosService.fecharPendentes().subscribe(() => {
+        SweetAlert.exibirSucesso(`Conta paga com sucesso!`)
+        .then(() => {
+          this.pedidosService.buscar().subscribe((pedidos: Array<Pedido>) => {
+            this.listaDePedidos = pedidos;
+          })
+          this.atualizarValorTotal()
         })
       })
-    })
-    this.atualizarValorTotal()
+    } else {
+      SweetAlert.exibirErro(`Você não possui contas pendentes, por favor, faça um pedido!`)
+    }
   }
 }

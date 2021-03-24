@@ -1,29 +1,43 @@
-import { Component, NgModule, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { SweetAlert } from 'src/app/shared/sweet-alert';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
-
 export class LoginComponent implements OnInit {
 
-  public formulario: FormBuilder;
+  public formulario: FormGroup = new FormGroup({
+    login: new FormControl(),
+    senha: new FormControl(),
+  });
 
-  // constructor(private ) { }
+  static usuarioLogado: any;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
-    // this.formulario = this.formBuilder.group({
-    //   login: [null, Validators.required],
-    //   senha: [null, Validators.required]
-    // })
+    this.formulario = this.formBuilder.group({
+      login: [null, Validators.required],
+      senha: [null, Validators.required],
+    })
   }
 
-  // realizarLogin() {
-  //   if (this.formulario.valid) {
-
-  //   }
-  // }
+  submit() {
+    if (this.formulario.valid) {
+      LoginComponent.usuarioLogado = 'Admin'
+      window.localStorage.setItem('token', '123456')
+      window.localStorage.setItem('nome', 'Admin')
+      this.router.navigate(['/'])
+    } else {
+      SweetAlert.exibirErro('Preencha o login e senha!')
+    }
+  }
 
 }

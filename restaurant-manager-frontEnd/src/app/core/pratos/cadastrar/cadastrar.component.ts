@@ -8,7 +8,7 @@ import { SweetAlert } from 'src/app/shared/sweet-alert';
 @Component({
   selector: 'pratos-cadastrar',
   templateUrl: './cadastrar.component.html',
-  styleUrls: ['./cadastrar.component.css']
+  styleUrls: ['./cadastrar.component.css'],
 })
 export class PratosCadastrarComponent implements OnInit {
 
